@@ -1,0 +1,42 @@
+services:
+    news-app:
+        container_name: news-app
+        depends_on:
+            - news-mysql
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/var/www/html
+            - ./docker/supervisor:/etc/supervisor/conf.d/
+        ports:
+            - 8000:80
+            
+    news-mysql:
+        container_name: news-mysql
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+        volumes:
+            - ./docker/mysql/data:/var/lib/mysql
+            - ./docker/mysql/init_scripts/:/docker-entrypoint-initdb.d
+        ports:
+            - 3306:3306
+
+    news-phpmyadmin:
+        container_name: news-phpmyadmin
+        depends_on:
+            - news-mysql
+        image: phpmyadmin
+        ports:
+            - 8080:80
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=news-mysql
+            - PMA_PORT=3306
+            - PMA_USER=root
+            - PMA_PASSWORD=${DB_PASSWORD}
+            - UPLOAD_LIMIT=50M
