@@ -4,25 +4,26 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Repositories\CategoryRepository;
-use jcobhams\NewsApi\NewsApi;
+use App\Services\CategoryService;
+use App\Services\NewsApiService;
 
 class CategorySeeder extends Seeder
 {
-    private CategoryRepository $category_repo;
+    private CategoryService $category_service;
+    private NewsApiService  $news_api_service;
 
     /**
      * Run the database seeds.
      */
-    public function run( CategoryRepository $category_repo ): void
+    public function run( CategoryService $category_service, NewsApiService  $news_api_service ): void
     {
-        $this->category_repo    = $category_repo;
-        $news_api_key           = env('NEWS_API');
-        $newsapi                = new NewsApi($news_api_key);
-        $categories             = $newsapi->getCategories();
+        $this->category_service = $category_service;
+        $this->news_api_service = $news_api_service;
 
-        foreach ($categories as $key => $category) {
-            $this->category_repo->store( $category );
+        $categories = $this->news_api_service->fetchCategories();
+
+        foreach ( $categories as $key => $category ) {
+            $this->category_service->storeCategory( $category );
         }
     }
 }

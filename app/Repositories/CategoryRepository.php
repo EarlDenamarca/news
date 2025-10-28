@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CategoryRepository
 {
-    public function store( string $category ) : Category 
+    public function store( string $category ) : void 
     {
-        return Category::create([
+        Category::create([
             'category' => $category
         ]);
     }
