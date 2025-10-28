@@ -15,6 +15,11 @@ class ArticleController extends Controller
         $this->article_service = $article_service;
     }
 
+    /**
+     * display list of articles
+     * 
+     * @return Illuminate\View\View
+     */
     public function index() : View 
     {
         $articles = $this->article_service->paginateArticles( 10 );
@@ -27,7 +32,14 @@ class ArticleController extends Controller
         );
     }
 
-    public function show( int $id )
+    /**
+     * display article details based on its ID
+     * 
+     * @param int $id   Unique identifier of the article(primary key)
+     * 
+     * @return Illuminate\View\View
+     */
+    public function show( int $id ) : View 
     {
         $news_article = $this->article_service->findById( $id );
 

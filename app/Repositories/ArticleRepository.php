@@ -56,11 +56,25 @@ class ArticleRepository
         return Article::where( 'title', $title )->first();
     }
 
+    /**
+     * retrieves paginated data from the database
+     * 
+     * @param int $limit    Number of records to retrieve
+     * 
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
     public function paginate( int $limit ) : LengthAwarePaginator 
     {
         return Article::paginate( $limit );
     }
 
+    /**
+     * finds a specific article from the database
+     * 
+     * @param int $limit    Number of records to retrieve
+     * 
+     * @return App\Models\Article 
+     */
     public function find( int $id ) : Article
     {
         return Article::find( $id );

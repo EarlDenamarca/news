@@ -61,6 +61,14 @@ class ArticleService
         }
     }
 
+    /**
+     * This method retrieves paginated articles
+     * and formats the published_data
+     * 
+     * @param int $limit    Number of records to be retreived
+     * 
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
     public function paginateArticles( int $limit ) : LengthAwarePaginator 
     {
         $articles = $this->article_repo->paginate( $limit );
@@ -71,6 +79,13 @@ class ArticleService
         return $articles;
     }
 
+    /**
+     * This method finds specific article based on ID
+     * 
+     * @param int $id   Uniqueu identifier of the article
+     * 
+     * @return App\Models\Article
+     */
     public function findById( int $id ) : Article 
     {
         $article = $this->article_repo->find( $id );
