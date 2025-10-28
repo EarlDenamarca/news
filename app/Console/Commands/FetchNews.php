@@ -80,12 +80,14 @@ class FetchNews extends Command
         $news       = $this->news_api_service->fetchArticles( $sources, $from, $to, $limit, $page );
 
         foreach ( $news as $article ) {
+            $source = $this->source_service->findSource( $article->source->id );
+            
             $this->article_service->storeArticle(
                 $title,
                 $description,
                 $content,
                 $author,
-                $source_id,
+                $source->id,
                 $published_date,
                 $url,
                 $image_url

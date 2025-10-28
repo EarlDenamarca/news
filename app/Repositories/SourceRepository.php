@@ -50,4 +50,9 @@ class SourceRepository
     {
         return Source::all();
     }
+
+    public function findBySourceId( string $source_id ) : Source 
+    {
+        return Source::where( 'source_id', $source_id )->first();
+    }
 }

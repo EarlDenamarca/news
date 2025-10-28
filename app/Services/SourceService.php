@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Source;
 use App\Repositories\SourceRepository;
 
 class SourceService
@@ -56,5 +57,10 @@ class SourceService
     public function getAllSources() : Collection 
     {
         return $this->source_repo->all();
+    }
+
+    public function findSource( string $source_id ) : Source 
+    {
+        return $this->source_repo->findBySourceId( $source_id );
     }
 }
