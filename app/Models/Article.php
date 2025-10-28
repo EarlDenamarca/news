@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Article extends Model
 {
@@ -16,4 +17,12 @@ class Article extends Model
         'url',
         'image_url',
     ];
+
+    /**
+     * get the sources that owns the article
+     */
+    public function source() : BelongsTo
+    {
+        return $this->belongsTo( Source::class );
+    }
 }
