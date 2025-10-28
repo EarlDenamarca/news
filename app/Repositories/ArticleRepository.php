@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Article;
 
 class ArticleRepository
@@ -53,5 +54,15 @@ class ArticleRepository
     public function findByTitle( string $title ) : ?Article 
     {
         return Article::where( 'title', $title )->first();
+    }
+
+    public function paginate( int $limit ) : LengthAwarePaginator 
+    {
+        return Article::paginate( $limit );
+    }
+
+    public function find( int $id ) : Article
+    {
+        return Article::find( $id );
     }
 }

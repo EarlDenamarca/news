@@ -1,0 +1,35 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.featured-article {
+    background: linear-gradient(to right, #00000099, #00000033), url('https://picsum.photos/1200/400?random=1') center/cover no-repeat;
+    color: white;
+    border-radius: 10px;
+    padding: 80px 40px;
+}
+.news-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.published-date {
+    font-size: 0.8rem;
+}
+
+.article-content p {
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+
+.news-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+.news-card .card-title {
+  font-size: 1.1rem;
+}

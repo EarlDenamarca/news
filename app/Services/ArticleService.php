@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Article;
 use App\Repositories\ArticleRepository;
 use Carbon\Carbon;
 
@@ -57,6 +59,23 @@ class ArticleService
                 $image_url
             );
         }
+    }
 
+    public function paginateArticles( int $limit ) : LengthAwarePaginator 
+    {
+        $articles = $this->article_repo->paginate( $limit );
+        foreach ( $articles as $article ) {
+            $article->published_date = Carbon::parse( $article->published_date )->format('F j, Y H:i:s');
+        }
+
+        return $articles;
+    }
+
+    public function findById( int $id ) : Article 
+    {
+        $article = $this->article_repo->find( $id );
+        $article->published_date = Carbon::parse( $article->published_date )->format('F j, Y H:i:s');
+        
+        return $article;
     }
 }
