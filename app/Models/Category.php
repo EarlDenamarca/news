@@ -12,7 +12,7 @@ class Category extends Model
     ];
 
     /**
-     * get the sources owned by the category
+     * get the sources owned by the categorys
      */
     public function sources() : HasMany
     {
