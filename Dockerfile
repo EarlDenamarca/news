@@ -27,9 +27,6 @@ WORKDIR /var/www/html
 RUN rm /etc/apache2/sites-available/000-default.conf
 COPY docker/apache/000-default.conf /etc/apache2/sites-available
 
-# Run Composer install
-RUN composer install
-
 # Change permisson on storage and docker folder
 RUN chmod 777 -R storage/
 RUN chmod 777 -R docker/
