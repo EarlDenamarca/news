@@ -65,13 +65,15 @@ class ArticleService
      * This method retrieves paginated articles
      * and formats the published_data
      * 
-     * @param int $limit    Number of records to be retreived
+     * @param string    $query  Query string for searcing articles
+     * @param int       $limit  Number of records to be retreived
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function paginateArticles( int $limit ) : LengthAwarePaginator 
+    public function paginateArticles( ?string $query, int $limit ) : LengthAwarePaginator 
     {
-        $articles = $this->article_repo->paginate( $limit );
+        $articles = $this->article_repo->paginate( $query, $limit );
+
         foreach ( $articles as $article ) {
             $article->published_date = Carbon::parse( $article->published_date )->format('F j, Y H:i:s');
         }

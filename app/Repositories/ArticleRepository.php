@@ -59,13 +59,17 @@ class ArticleRepository
     /**
      * retrieves paginated data from the database
      * 
-     * @param int $limit    Number of records to retrieve
+     * @param string    $query  Query string for searcing articles
+     * @param int       $limit  Number of records to retrieve
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function paginate( int $limit ) : LengthAwarePaginator 
+    public function paginate( ?string $query, int $limit ) : LengthAwarePaginator 
     {
-        return Article::paginate( $limit );
+        return Article::where( 'title', 'like', '%' . $query . '%' )
+                    ->orWhere( 'description', 'like', '%' . $query . '%' )
+                    ->orWhere( 'content', 'like', '%' . $query . '%' )
+                    ->paginate( $limit );
     }
 
     /**

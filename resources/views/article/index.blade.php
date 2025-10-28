@@ -3,9 +3,23 @@
 @section('title', 'Article Page')
 
 @section('content')
-    <!-- News Section -->
     <div class="container mb-5">
         <h2 class="mb-4 fw-bold">Latest Articles</h2>
+
+        <form action="{{ route('home') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input
+                    type="text"
+                    name="q"
+                    class="form-control"
+                    placeholder="Search news articles…"
+                    value="{{ request('q') }}"
+                    aria-label="Search news articles"
+                >
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+
         <div class="row g-4">
         
             @if ( $articles->count() )

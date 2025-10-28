@@ -20,9 +20,9 @@ class ArticleController extends Controller
      * 
      * @return Illuminate\View\View
      */
-    public function index() : View 
+    public function index( Request $request ) : View 
     {
-        $articles = $this->article_service->paginateArticles( 10 );
+        $articles = $this->article_service->paginateArticles( $request->q, 12 );
         
         return view(
             'article.index', 
