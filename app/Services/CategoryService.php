@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\CategoryRepository;
 
 class CategoryService
@@ -16,5 +17,10 @@ class CategoryService
     public function storeCategory( string $category ) : void 
     {
         $this->category_repo->store( $category );
+    }
+
+    public function getAllCategories() : Collection 
+    {
+        return $this->category_repo->all();
     }
 }
