@@ -2,7 +2,7 @@
 
 ## Setup Instructions
 
-- go to (https://newsapi.org)[https://newsapi.org] and sign up to get your free api key
+- go to https://newsapi.org and sign up to get your free api key
 - Open wsl terminal.
 - Clone the repo
 - create a .env file and copy the content of .env.example to .env file
