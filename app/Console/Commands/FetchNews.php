@@ -29,7 +29,8 @@ class FetchNews extends Command
         $news_api_key   = env('NEWS_API');
         $newsapi        = new NewsApi($news_api_key);
         
-        $categories     = $newsapi->getCategories();
-        dd( $categories );
+        // $sorts          = $newsapi->getSortBy();
+        $news = $newsapi->getEverything('', 'nhl-news', '', '', '2025-10-01', '2025-10-28', 'en', 'publishedAt',  3, 1);
+        dd( $news );
     }
 }

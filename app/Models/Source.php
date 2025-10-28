@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Source extends Model
+{
+    protected $fillable = [
+        'id',
+        'name',
+        'description',
+        'url',
+        'category_id',
+        'language',
+        'country'
+    ];
+}
