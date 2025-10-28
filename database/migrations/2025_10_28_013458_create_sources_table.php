@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sources', function (Blueprint $table) {
-            $table->string( 'id' )->primary();
+            $table->id();
+            $table->string( 'source_id' );
             $table->string( 'name' );
             $table->text( 'description' )->nullable();
             $table->text( 'url' );

@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\Article;
+
+class ArticleRepository
+{
+    /**
+     * Store a new article in the database
+     * 
+     * @param string $title           The title of the article.
+     * @param string $description     The description of the article.
+     * @param string $content         The content of the article.
+     * @param string $author          The author of the article.
+     * @param int    $source_id       The ID of the article's source (foreign key).
+     * @param string $published_date  The publication date in string format.
+     * @param string $url             The url of the article.
+     * @param string $image_url       The URL image or thumbnail of the article.
+     * 
+     * @return App\Models\Article
+     */
+    public function store(
+        string  $title,
+        string  $description,
+        string  $content,
+        string  $author,
+        int     $source_id,
+        string  $published_date,
+        string  $url,
+        string  $image_url
+    ) : Article 
+    {
+        return Article::create([
+            'title'             => $title,
+            'description'       => $description,
+            'content'           => $content,
+            'author'            => $author,
+            'source'            => $source,
+            'published_date'    => $published_date,
+            'url'               => $url,
+            'image_url'         => $image_url
+        ]);
+    }
+
+    /**
+     * This method finds an article in the database
+     * 
+     * @param string $title     The title of the article
+     * 
+     * @return null or App\Models\Article
+     */
+    public function findByTitle( string $title ) : ?Article 
+    {
+        return Article::where( 'title', $title )->first();
+    }
+}
